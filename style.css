@@ -1,0 +1,248 @@
+
+
+.GameBody{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height:100%;
+}
+body{
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width:100%;
+  height:100%;
+  font-family: "Lobster", serif;
+}
+
+@keyframes DotMotion {
+    0%   {  top: 0px; opacity:12; } 
+    
+    100% { top: 1200px;  }  
+
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+.tool{
+  font-size: 20px;
+
+}
+.btn{
+  margin-right:15px;
+  width:100px;
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+ 
+  color: #ffffff;
+  font-size: 15px;
+  padding: 8px 15px 8px 15px;
+  text-decoration: none;
+  outline: none;
+}
+.btn:focus{
+  outline: none;
+  color: #ffffff;
+}
+.btn:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+  color: #ffffff;
+  outline: none;
+}
+#score{
+   font-size: 30px;
+}
+.Timer{
+  font-size: 30px;
+}
+.rights{
+   float:right;
+}
+.dot {
+    cursor: pointer;
+    opacity:0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    position: absolute;
+    left: 25px;
+    top: 0; 
+    animation: DotMotion 10s 1;
+    z-index:1;
+    animation-timing-function: linear;
+    background: radial-gradient(circle at 50px 50px, #5cabff, #000);
+    
+} 
+#ballColor{
+  margin-right: 15px;
+}
+.topBar{ 
+   z-index:99;
+   position: absolute;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   width:100%;
+   background-color: aliceblue;
+   padding-right: 25px;
+}
+
+.cong{
+  margin-right: 50px;
+  cursor: pointer;
+  color:#3498db; 
+
+}
+.cong:hover{
+  color:White; 
+}
+
+.scoreBar{
+  width: 100%;
+  margin: 15px;
+  margin-top: 10px;
+}
+.speedarea{
+  width: 40%;
+}
+ul {
+  display: flex;
+  align-items: stretch; /* Default */
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin-right: 60px;
+}
+li {
+  display: block;
+  flex: 0 1 auto; /* Default */
+  list-style-type: none;
+  
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;   
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #308ece;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #308ece;
+  cursor: pointer;
+}
+
+.PauseMsg {
+  position: absolute;
+  display: none;
+  top: 40%;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  background-color:#73c9e3;
+ 
+  z-index:10;
+}
+#NextLevelMsg {
+  position: absolute;
+  display: none;
+  border-radius: 25px;
+  border: 2px solid #cbebf5;
+  top: 30%;
+  padding: 20px; 
+  width: 100%;
+  height:300px;   
+  background-color:#cbebf5;
+  background:#f0f8ff;
+  z-index:10;
+}
+#lostMsg {
+  position: absolute;
+  border-radius: 25px;
+  border: 2px solid #cbebf5;
+  top: 30%;
+  padding: 20px; 
+  width: 100%;
+  height:300px;   
+  background-color:#cbebf5;
+  background:#f0f8ff;
+  z-index:10;
+}
+.WelcomeMsg {
+  position: absolute;
+  top: 10%;
+  right: 0;
+  width: 100%;
+  height: 400px;
+  margin:50px;
+  background-color:#73c9e3;
+  background: linear-gradient(to right, #73c9e3,white);
+  z-index:10;
+}
+
+.flash {
+  animation-name: flash;
+   animation-duration: 0.2s;
+   animation-timing-function: linear;
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+   animation-play-state: running;
+}
+
+@keyframes flash {
+   from {color: red;}
+   to {color: black;}
+}
+
+.Dcolor1{
+  color:#58B2AD;
+  font-size: 18px;
+
+}
+.Dcolor2{
+  color:#800000;	
+  font-size: 18px;
+}
+.Dcolor3{
+  color:#008080;
+  font-size: 18px;
+}
+.Dcolor4{
+  color: #808000;
+  font-size: 18px;
+}
+.Dcolor5{
+  color:#f032e6;
+  font-size: 18px;
+}
+
+.dropdown-menu li {
+  cursor: pointer;
+}
