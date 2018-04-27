@@ -1,6 +1,7 @@
  var dotClickedCount=0;
  var GameStat="Paused";
  var LevelStat=1;
+ var minSpeed=10;
  var dotsPerLevel=25;
  var btn = document.getElementById("statBtn");
  var timeleft = 40;
@@ -11,22 +12,47 @@
     if(timeleft <= 0 || dotClickedCount>=dotsPerLevel ){
 
        
-      clearInterval(CountdownTimer);
-    }
+      clearInterval(Timer2);
+      clearInterval(Timer);
+    
      
       if(dotClickedCount==dotsPerLevel ){
 
         nextLevel();
         
       }else{
+        document.getElementById("score2").innerHTML=document.getElementById("score").innerHTML;
+        var NextLevelMsg = document.getElementById("lostMsg");
+        NextLevelMsg.style.display="block";
+        document.getElementById("GameBody").innerHTML="";
+        var GameBody = document.getElementById("GameBody");
+        GameBody.style.pointerEvents="none";
+        var GameBody = document.getElementById("topbar");
+        GameBody.style.pointerEvents="none";
 
       }
-
+    }
   }
 
   function startnewgame(){
     var NextLevelMsg = document.getElementById("WelcomeMsg");
     NextLevelMsg.style.display="none";
+    var lostMsg = document.getElementById("lostMsg");
+    lostMsg.style.display="none";
+
+    document.getElementById("score").innerHTML="0";
+    timeleft = 40;
+    document.getElementById("level").innerHTML="Level1";
+    document.getElementById("time").innerHTML="40";
+    document.getElementById("progressBarCount").style.width="0";
+    document.getElementById("GameBody").innerHTML="";
+    dotClickedCount=0;
+    var GameBody = document.getElementById("topbar");
+    GameBody.style.pointerEvents="auto";
+
+    var slider = document.getElementById("speed");
+    slider.value="10";
+    slider.onchange();
     playGame();
    }
 
@@ -36,7 +62,35 @@
   NextLevelMsg.style.display="block";
   LevelStat++;
   var level = document.getElementById("level");
-  level.innerHTML="Level "+LevelStat;
+  level.innerHTML="Level"+LevelStat;
+
+  var GameBody = document.getElementById("GameBody");
+   GameBody.style.pointerEvents="none";
+   var topbar = document.getElementById("topbar");
+   topbar.style.pointerEvents="none";
+ }
+
+
+ function Continue(){
+  var NextLevelMsg = document.getElementById("NextLevelMsg");
+  NextLevelMsg.style.display="none";
+  var nextspeed=minSpeed+LevelStat;
+  document.getElementById("speed").min=nextspeed;
+  var slider = document.getElementById("speed");
+  slider.value=nextspeed;
+  slider.onchange();
+  timeleft = 40;
+  document.getElementById("progressBarCount").style.width="0";
+  document.getElementById("time").innerHTML="40";
+  document.getElementById("GameBody").innerHTML="";
+  dotClickedCount=0;
+  var GameBody = document.getElementById("topbar");
+  GameBody.style.pointerEvents="auto";
+
+  var topbar = document.getElementById("topbar");
+  topbar.style.pointerEvents="auto";
+  
+  playGame();
  }
 
 
@@ -94,16 +148,18 @@ function GameTimer() {
  document.getElementById("GameBody").appendChild(div);
 }
 
-  var slider = document.getElementById("speed");
 
-  slider.onchange = function() {
-  var speed = (10/this.value)*10;
-  document.getElementById("speedTxt").innerHTML=this.value;
+//updating speed on silder change
+var slider = document.getElementById("speed");
+    slider.onchange = function() {
+   
+    var Dotsspeed = (10/this.value)*10;
+    document.getElementById("speedTxt").innerHTML=this.value;
 
-  setStyle(".dot {"+
-    "animation: DotMotion "+speed+"s 1;"+
-    "animation-timing-function: linear;"+
-    "z-index:1;}");  
+     setStyle(".dot {"+
+       "animation: DotMotion "+Dotsspeed+"s 1;"+
+       "animation-timing-function: linear;"+
+       "z-index:1;}");  
 }
 
 function setStyle(cssText) {
@@ -159,9 +215,8 @@ function pauseGame(){
    pausedmesg.style.display="block";
    var GameBody = document.getElementById("GameBody");
    GameBody.style.pointerEvents="none";
-   var GameBody = document.getElementById("GameBody");
-   GameBody.style.pointerEvents="none";
-   clearInterval(Timer2);
+   
+    clearInterval(Timer2);
     clearInterval(Timer);
   }
 

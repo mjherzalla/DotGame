@@ -8,7 +8,7 @@
 body{
   overflow-x: hidden;
   overflow-y: hidden;
-  width:100%;
+  
   height:100%;
   font-family: "Lobster", serif;
 }
@@ -173,10 +173,12 @@ li {
 #NextLevelMsg {
   position: absolute;
   display: none;
-  top: 0px;
+  left:5px;
+  padding: 20px; 
+  top: 30%;
   padding: 20px; 
   width: 100%;
-  height:100%;   
+  height:300px;   
   background-color:#cbebf5;
   background:#f0f8ff;
   z-index:190;
@@ -184,8 +186,10 @@ li {
 #lostMsg {
   position: absolute;
   border-radius: 25px;
+  display: none;
   border: 2px solid #cbebf5;
   top: 30%;
+  left:5px;
   padding: 20px; 
   width: 100%;
   height:300px;   
@@ -197,6 +201,7 @@ li {
   position: absolute;
   color:white;
   top: 0px;
+  left:5px;
   padding: 20px; 
   width: 100%;
   height:100%;   

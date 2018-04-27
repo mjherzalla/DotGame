@@ -11,7 +11,7 @@
    <div class="col-lg-12" >
      <div class="panel panel-default">
        
-       <div class="topBar panel-body"> 
+       <div id="topbar"class="topBar panel-body"> 
           <ul>
               <li><b id="score">0</b></li>
               <li class="scoreBar"> 
@@ -30,12 +30,12 @@
               </li>
           </ul>  
           <ul>  
-              <li class="speedarea">                                          
-                 <input type="range" id="speed" min="10" max="26" class="slider" value="1">
+              <li id="speeddiv" class="speedarea">                                          
+                 <input type="range" id="speed" min="10" max="30" class="slider" value="1">
                 <i>Speed:</i><i id="speedTxt">10</i>  
               </li>
               <li class="tool">
-                  <b class="glyphicon glyphicon-time"><b id="time">60</b></b>  
+                  <b class="glyphicon glyphicon-time"><b id="time">40</b></b>  
                 </li>
                 <li class="tool">
                     <b class="glyphicon glyphicon-fire"><b id="level">Level1</b></b>  
@@ -62,7 +62,10 @@
      </div> 
    </div>
    <script src="js.js"></script>
-   <div id="PauseMsg" class="PauseMsg"><center><h1 class="flash"><span class="glyphicon glyphicon-pause"></span> Paused</h1></center></div>
+   <div id="PauseMsg" class="PauseMsg"><center><h1 class="flash"><span class="glyphicon glyphicon-pause"></span> Paused</h1>
+    <a onclick="GameStatetoggle()" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-play"></span> Play</a> 
+    <a onclick="startnewgame()" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-star"></span>NewGame</a> 
+  </center></div>
    <div id="NextLevelMsg" >
      <center><h1>Congratulations !! </h1>
       <h4>You have passed to the next level</h4>
@@ -72,11 +75,21 @@
       <br>
       
 
-          <a onclick="GameStatetoggle()" class="btn btn-success ">
+          <a onclick="Continue()" class="btn btn-success ">
               <span class="glyphicon glyphicon-star"></span> Continue
             </a>
       </center>
    </div>
+   <div id="lostMsg" class="lostMsg"><center><h1 class="flash"><span class="glyphicon glyphicon-warning-sign"></span> failed</h1>
+    <h2> Your score:<a id="score2"></a> </h2>
+    <a onclick="startnewgame()" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-star"></span>NewGame</a> 
+  </center></div>
+  
+  <div id="PauseMsg" class="PauseMsg"><center><h1 class="flash"><span class="glyphicon glyphicon-pause"></span> Paused</h1>
+    <a onclick="GameStatetoggle()" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-play"></span> Play</a> 
+    <a onclick="startnewgame()" class="btn btn-info btn-lg"> <span class="glyphicon glyphicon-star"></span>NewGame</a> 
+  </center></div>
+
    <div id="WelcomeMsg" >
     <center><h1>Wellcome to DotsGame </h1>
      <h4>Click dots and have fun</h4>
