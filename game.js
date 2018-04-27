@@ -14,9 +14,9 @@
  var min_ID=1000;  
 //game checker
 function CountdownTimer (){
-    timeleft--;
-    document.getElementById("time").innerHTML = timeleft;
-    if(timeleft <= 0 || dotClickedCount>=dotsPerLevel ){
+     timeleft--;
+     document.getElementById("time").innerHTML = timeleft;
+      if(timeleft <= 0 || dotClickedCount>=dotsPerLevel ){
           clearInterval(Timer2);
           clearInterval(Timer);
 
@@ -59,7 +59,6 @@ function startnewgame(){
         playGame();
    }
 
-
 function nextLevel(){
 
         var NextLevelMsg = document.getElementById("NextLevelMsg");
@@ -72,7 +71,6 @@ function nextLevel(){
         var topbar = document.getElementById("topbar");
         topbar.style.pointerEvents="none";
  }
-
 
 function Continue(){
         var NextLevelMsg = document.getElementById("NextLevelMsg");
@@ -95,10 +93,6 @@ function Continue(){
         playGame();
  }
 
-
-
-
- 
 function GameTimer() {
  
         //Randomize the game   
@@ -139,7 +133,6 @@ function GameTimer() {
 
         document.getElementById("GameBody").appendChild(div);
 }
-
 
 //updating speed on silder change
 var slider = document.getElementById("speed");
@@ -200,9 +193,6 @@ function pauseGame(){
       clearInterval(Timer);
   }
 
-  
-
-
 function playGame(){
       GameStat = "Running";
       document.getElementById("speed").disabled = false;
@@ -222,8 +212,6 @@ function playGame(){
       var GameBody = document.getElementById("GameBody");
       GameBody.style.pointerEvents="auto";
   }
-
-
 
 //startSimulation and pauseSimulation defined elsewhere
 function handleVisibilityChange() {
@@ -246,8 +234,6 @@ function handleVisibilityChange() {
 
       clearInterval(Timer);
       clearInterval(Timer2);
-
-
 
   } 
 }
