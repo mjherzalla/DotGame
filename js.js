@@ -1,38 +1,42 @@
-
- 
  var dotClickedCount=0;
  var GameStat="Paused";
- var LevelStat="1";
+ var LevelStat=1;
  var dotsPerLevel=25;
+ var btn = document.getElementById("statBtn");
+ var timeleft = 40;
 
- function startGame(){
-  
-  var timeleft = 35;
-  var gameTimer = setInterval(function(){
+  function CountdownTimer (){
     timeleft--;
     document.getElementById("time").innerHTML = timeleft;
     if(timeleft <= 0 || dotClickedCount>=dotsPerLevel ){
 
        
-      clearInterval(gameTimer);
+      clearInterval(CountdownTimer);
     }
      
       if(dotClickedCount==dotsPerLevel ){
 
         nextLevel();
-        alert(dotClickedCount+",,"+dotsPerLevel);
+        
+      }else{
+
       }
 
-  },1000);
- }
+  }
 
- startGame();
+  function startnewgame(){
+    var NextLevelMsg = document.getElementById("WelcomeMsg");
+    NextLevelMsg.style.display="none";
+    playGame();
+   }
+
+
  function nextLevel(){
   var NextLevelMsg = document.getElementById("NextLevelMsg");
   NextLevelMsg.style.display="block";
-
-
-
+  LevelStat++;
+  var level = document.getElementById("level");
+  level.innerHTML="Level "+LevelStat;
  }
 
 
@@ -68,7 +72,7 @@ function GameTimer() {
       div.style.left = dotHorizontalLocation+"px";
    }
  
- div.id=dotID; 
+  div.id=dotID; 
 
  //To make every single dot clickable and unique 
  div.onclick = function() {  
@@ -120,58 +124,72 @@ function setStyle(cssText) {
 
 function GameStatetoggle () {
   
-  var btn = document.getElementById("statBtn");
+  
   var slider = document.getElementById("speed");
   var speed = (10/this.value)*10;
      if (GameStat == "Paused") 
      {
-         GameStat = "Running";
-         document.getElementById("speed").disabled = false;
-         btn.innerHTML = '<a onclick="GameStatetoggle()" class="btn btn-info btn-lg">'+
-         ' <span class="glyphicon glyphicon-pause"></span> Pause'+
-          '</a>';
-        Timer = setInterval(GameTimer, 900);
-
-
-       setStyle(".dot {"+
-       "animation: DotMotion "+speed+"s 1;"+
-       "animation-play-state:running;"+
-       "animation-timing-function: linear;"+
-       "z-index:1;}"); 
-       var pausedmesg = document.getElementById("PauseMsg");
-       pausedmesg.style.display="none";
-
-       var GameBody = document.getElementById("GameBody");
-       GameBody.style.pointerEvents="auto";
-
-
+       playGame();
+       
      } 
      else 
      {
-       GameStat = "Paused";
-       document.getElementById("speed").disabled = true;
-
-        btn.innerHTML = '<a onclick="GameStatetoggle()" class="btn btn-info btn-lg">'+
-       ' <span class="glyphicon glyphicon-play"></span> Play'+
-        '</a>';
-
-      setStyle(".dot {"+
-      "animation: DotMotion "+speed+"s 1;"+
-      "animation-play-state:paused;"+
-      "animation-timing-function: linear;"+
-      "z-index:1;}"); 
-
-
-      var pausedmesg = document.getElementById("PauseMsg");
-      pausedmesg.style.display="block";
-      var GameBody = document.getElementById("GameBody");
-      GameBody.style.pointerEvents="none";
-      var GameBody = document.getElementById("GameBody");
-      GameBody.style.pointerEvents="none";
-
-       clearInterval(Timer);
+      pauseGame();
+     
      }
   }
+
+function pauseGame(){
+   
+    GameStat = "Paused";
+    document.getElementById("speed").disabled = true;
+
+     btn.innerHTML = '<a onclick="GameStatetoggle()" class="btn btn-info btn-lg">'+
+    ' <span class="glyphicon glyphicon-play"></span> Play'+
+     '</a>';
+
+   setStyle(".dot {"+
+   "animation: DotMotion "+speed+"s 1;"+
+   "animation-play-state:paused;"+
+   "animation-timing-function: linear;"+
+   "z-index:1;}"); 
+
+
+   var pausedmesg = document.getElementById("PauseMsg");
+   pausedmesg.style.display="block";
+   var GameBody = document.getElementById("GameBody");
+   GameBody.style.pointerEvents="none";
+   var GameBody = document.getElementById("GameBody");
+   GameBody.style.pointerEvents="none";
+   clearInterval(Timer2);
+    clearInterval(Timer);
+  }
+
+  
+
+
+  function playGame(){
+    GameStat = "Running";
+    document.getElementById("speed").disabled = false;
+    btn.innerHTML = '<a onclick="GameStatetoggle()" class="btn btn-info btn-lg">'+
+    ' <span class="glyphicon glyphicon-pause"></span> Pause'+
+     '</a>';
+   
+     Timer = setInterval(GameTimer, 900);
+     Timer2 = setInterval(CountdownTimer, 1000);
+    setStyle(".dot {"+
+     "animation: DotMotion "+speed+"s 1;"+
+     "animation-play-state:running;"+
+     "animation-timing-function: linear;"+
+     "z-index:1;}"); 
+  var pausedmesg = document.getElementById("PauseMsg");
+  pausedmesg.style.display="none";
+
+  var GameBody = document.getElementById("GameBody");
+  GameBody.style.pointerEvents="auto";
+  }
+
+
 
 //startSimulation and pauseSimulation defined elsewhere
 function handleVisibilityChange() {
@@ -194,7 +212,7 @@ function handleVisibilityChange() {
     "z-index:1;}"); 
 
      clearInterval(Timer);
-
+     clearInterval(Timer2);
 
 
 
